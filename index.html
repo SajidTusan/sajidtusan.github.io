@@ -1,209 +1,223 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Sajid Hossain | Computer Science & Engineering student, software developer and machine learning enthusiast."/>
-  <meta name="theme-color" content="#07111f"/>
-  <title>Sajid Hossain | Developer Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Sajid Hossain | Computer Science & Engineering student, software developer and machine learning enthusiast."/>
+<meta name="theme-color" content="#06080D"/>
+<title>Sajid Hossain — Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="cursor" id="cursor"></div><div class="cursor-follower" id="cursorFollower"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="brand">S<span>H</span><b>.</b></a>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
+<div class="boot-screen" id="bootScreen">
+  <div class="boot-lines">
+    <p><span class="prompt">$</span> initializing_portfolio<span class="dots">...</span></p>
+    <p><span class="prompt">$</span> compiling_scene <span class="ok" id="bootOk1">[ok]</span></p>
+    <p><span class="prompt">$</span> render sajid.hossain --mode=3d</p>
+    <div class="boot-bar"><i id="bootBarFill"></i></div>
+    <p class="boot-pct" id="bootPct">0%</p>
+  </div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="brand"><span class="brand-mark">SH</span><span class="brand-blink">_</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-path="~/home">~/home</a>
+      <a href="#about" class="nav-link" data-path="~/about">~/about</a>
+      <a href="#skills" class="nav-link" data-path="~/skills">~/skills</a>
+      <a href="#projects" class="nav-link" data-path="~/work">~/work</a>
+      <a href="#experience" class="nav-link" data-path="~/journey">~/journey</a>
+      <a href="#contact" class="nav-link" data-path="~/contact">~/contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="cv.pdf" download class="cv-pill magnetic"><i class="fa-solid fa-file-arrow-down"></i> CV</a>
+      <button class="icon-btn menu-btn" id="hamburger" title="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="hero" id="home">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <div class="hero-vignette"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow reveal"><span class="status-dot"></span> sajid@dev:~$ status --available</div>
+        <p class="hero-kicker reveal">COMPUTER SCIENCE & ENGINEERING</p>
+        <h1 class="hero-title reveal">Building <span class="grad-text">intelligent</span><br/>things with code.</h1>
+        <p class="hero-desc reveal">I'm Sajid Hossain — a final-year CSE student wiring together software, data and machine learning into things that actually run. That structure behind me is a live render, not a picture — drag your cursor across it.</p>
+        <div class="hero-buttons reveal">
+          <a href="#projects" class="btn primary magnetic"><span>Explore Work</span><i class="fa-solid fa-arrow-down"></i></a>
+          <a href="cv.pdf" class="btn secondary magnetic" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+        </div>
+        <div class="hero-links reveal">
+          <a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/sajid-hossain-tusan/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="mailto:sajidhossain0103@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+        </div>
       </div>
-      <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
-        <button class="icon-btn menu-btn" id="hamburger" title="Menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="hero-visual reveal" id="tiltCard">
+        <div class="profile-card" id="profileCard">
+          <div class="card-glow"></div>
+          <div class="card-top"><span>SAJID // DEVELOPER</span><i class="fa-solid fa-code"></i></div>
+          <div class="profile-image-wrap"><img src="profile.jpg" alt="Sajid Hossain" loading="eager"/></div>
+          <div class="profile-meta">
+            <div><strong>3.47</strong><small>CGPA</small></div>
+            <div><strong>Final</strong><small>Semester</small></div>
+            <div><strong>Dhaka</strong><small>Bangladesh</small></div>
+          </div>
+          <div class="code-strip"><span class="k">python</span> <span class="d">def</span> <span class="f">build</span>(): <span class="c"># keep learning</span></div>
+        </div>
       </div>
     </div>
-  </nav>
+    <div class="scroll-hint reveal"><span>scroll</span><div class="scroll-line"><i></i></div></div>
+  </section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-glow glow-a"></div><div class="hero-glow glow-b"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow reveal"><span class="status-dot"></span> Open to opportunities</div>
-          <p class="hero-kicker reveal">COMPUTER SCIENCE & ENGINEERING</p>
-          <h1 class="hero-title reveal">Building <span>useful</span><br/>things with code.</h1>
-          <p class="hero-desc reveal">I'm Sajid Hossain, a final-year CSE student focused on software development, data analytics and machine learning fundamentals.</p>
-          <div class="hero-buttons reveal">
-            <a href="#projects" class="btn primary"><i class="fa-solid fa-arrow-down"></i> Explore Projects</a>
-            <a href="cv.pdf" class="btn secondary" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
-          </div>
-          <div class="hero-links reveal">
-            <a href="https://github.com/SajidTusan" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/sajid-hossain-tusan/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:sajidhossain0103@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
-          </div>
+  <section class="section about" id="about">
+    <div class="bg-blob blob-blue"></div>
+    <div class="container">
+      <div class="section-head reveal"><p class="path">sajid@dev:~/about$ cat profile.md</p><h2>A developer in progress,<br/><span class="grad-text">always shipping.</span></h2></div>
+      <div class="about-grid">
+        <div class="about-lead reveal">
+          <p class="large">Driven final-year CSE student with a practical foundation in programming, databases, OOP, SDLC and data-focused problem solving.</p>
+          <p>I enjoy turning concepts into working projects — from web-based management systems to machine learning experiments and embedded solutions. Right now I'm building depth in Python, Django, data analytics and software engineering fundamentals.</p>
+          <a class="text-link" href="https://github.com/SajidTusan" target="_blank" rel="noopener">Explore my GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div class="hero-visual reveal">
-          <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div>
-          <div class="profile-card">
-            <div class="card-top"><span>SAJID / DEVELOPER</span><i class="fa-solid fa-code"></i></div>
-            <div class="profile-image-wrap"><img src="profile.jpg" alt="Sajid Hossain"/></div>
-            <div class="profile-meta">
-              <div><strong>3.47</strong><small>CGPA</small></div>
-              <div><strong>Final</strong><small>Semester</small></div>
-              <div><strong>Dhaka</strong><small>Bangladesh</small></div>
-            </div>
-            <div class="code-strip"><span>python</span> <em>def</em> <b>build</b>(): <i># keep learning</i></div>
-          </div>
+        <div class="about-facts reveal">
+          <div class="fact tilt-card"><span>Education</span><strong>BSc in CSE</strong><small>Northern University Bangladesh</small></div>
+          <div class="fact tilt-card"><span>Focus</span><strong>Software · Data · ML</strong><small>Building practical technical depth</small></div>
+          <div class="fact tilt-card"><span>Toolkit</span><strong>Python · C/C++ · Java</strong><small>JavaScript · Django · MySQL</small></div>
+          <div class="fact tilt-card"><span>Approach</span><strong>Curious & analytical</strong><small>Research · documentation · teamwork</small></div>
         </div>
       </div>
-      <div class="scroll-hint"><span>SCROLL TO EXPLORE</span><i class="fa-solid fa-arrow-down"></i></div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section about" id="about">
-      <div class="container">
-        <div class="section-head reveal"><span class="section-num">01</span><div><p>PROFILE</p><h2>A developer in progress,<br/><span>always shipping.</span></h2></div></div>
-        <div class="about-grid">
-          <div class="about-lead reveal">
-            <p class="large">Driven final-year CSE student with a practical foundation in programming, databases, OOP, SDLC and data-focused problem solving.</p>
-            <p>I enjoy turning concepts into working projects, from web-based management systems to machine learning experiments and embedded solutions. I am currently building depth in Python, Django, data analytics and software engineering.</p>
-            <a class="text-link" href="https://github.com/SajidTusan" target="_blank">Explore my GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-          <div class="about-facts reveal">
-            <div class="fact"><span>Education</span><strong>BSc in CSE</strong><small>Northern University Bangladesh</small></div>
-            <div class="fact"><span>Focus</span><strong>Software · Data · ML</strong><small>Building practical technical skills</small></div>
-            <div class="fact"><span>Toolkit</span><strong>Python · C/C++ · Java</strong><small>JavaScript · Django · MySQL</small></div>
-            <div class="fact"><span>Approach</span><strong>Curious & analytical</strong><small>Research · documentation · teamwork</small></div>
-          </div>
+  <section class="section skills" id="skills">
+    <div class="bg-blob blob-lime"></div>
+    <div class="container">
+      <div class="section-head reveal"><p class="path">sajid@dev:~/skills$ ls -la</p><h2>Skills that turn<br/><span class="grad-text">ideas into builds.</span></h2></div>
+      <div class="skill-layout">
+        <div class="skill-panel tilt-card reveal">
+          <h3><i class="fa-solid fa-terminal"></i> Programming</h3>
+          <div class="skill-tags"><span>Python</span><span>C</span><span>C++</span><span>Java</span><span>JavaScript</span></div>
+        </div>
+        <div class="skill-panel tilt-card reveal">
+          <h3><i class="fa-solid fa-layer-group"></i> Frameworks & Data</h3>
+          <div class="skill-tags"><span>Django</span><span>MySQL</span><span>HTML / CSS</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span></div>
+        </div>
+        <div class="skill-panel tilt-card reveal">
+          <h3><i class="fa-solid fa-toolbox"></i> Tools</h3>
+          <div class="skill-tags"><span>Git</span><span>GitHub</span><span>VS Code</span><span>MS Office</span><span>Google Workspace</span></div>
+        </div>
+        <div class="skill-panel accent-panel tilt-card reveal">
+          <h3><i class="fa-solid fa-people-group"></i> Professional</h3>
+          <div class="skill-list"><span>Analytical Thinking</span><span>Problem Solving</span><span>Teamwork</span><span>Communication</span><span>Project Planning</span><span>Research & Documentation</span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section skills" id="skills">
-      <div class="container">
-        <div class="section-head reveal"><span class="section-num">02</span><div><p>TOOLBOX</p><h2>Skills that turn<br/><span>ideas into builds.</span></h2></div></div>
-        <div class="skill-layout">
-          <div class="skill-panel reveal">
-            <h3><i class="fa-solid fa-terminal"></i> Programming</h3>
-            <div class="skill-tags">
-              <span>Python</span><span>C</span><span>C++</span><span>Java</span><span>JavaScript</span>
-            </div>
-            <h3><i class="fa-solid fa-globe"></i> Web & Database</h3>
-            <div class="skill-tags">
-              <span>HTML5</span><span>CSS3</span><span>Django</span><span>MySQL</span><span>SQL</span>
-            </div>
-          </div>
-          <div class="skill-panel reveal">
-            <h3><i class="fa-solid fa-chart-simple"></i> Data & ML</h3>
-            <div class="skill-tags"><span>NumPy</span><span>Pandas</span><span>Scikit-learn</span><span>Data Preprocessing</span><span>Model Evaluation</span><span>Basic Statistics</span></div>
-            <h3><i class="fa-solid fa-screwdriver-wrench"></i> Tools</h3>
-            <div class="skill-tags"><span>Git</span><span>GitHub</span><span>VS Code</span><span>MS Office</span><span>Google Workspace</span></div>
-          </div>
-          <div class="skill-panel accent-panel reveal">
-            <h3><i class="fa-solid fa-people-group"></i> Professional</h3>
-            <div class="skill-list"><span>Analytical Thinking</span><span>Problem Solving</span><span>Teamwork</span><span>Communication</span><span>Project Planning</span><span>Research & Documentation</span></div>
-          </div>
-        </div>
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-head reveal"><p class="path">sajid@dev:~/work$ git log --oneline</p><h2>Projects with a<br/><span class="grad-text">purpose.</span></h2></div>
+      <div class="featured-grid">
+        <article class="featured-project tilt-card reveal"><span class="gutter-num">01</span><div class="project-top"><span class="project-index">WEB · CRUD</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
+          <div class="project-icon big"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+          <h3>Local Service Search Engine Management System</h3>
+          <p>Web-based local service search platform with MySQL database integration and full CRUD operations.</p>
+          <div class="tech"><span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+        <article class="featured-project tilt-card reveal"><span class="gutter-num">02</span><div class="project-top"><span class="project-index">MACHINE LEARNING</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
+          <div class="project-icon big"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Result Prediction Model</h3>
+          <p>ML project predicting students' academic results, covering preprocessing, training and evaluation workflows.</p>
+          <div class="tech"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span></div>
+          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+        <article class="featured-project tilt-card reveal"><span class="gutter-num">03</span><div class="project-top"><span class="project-index">EMBEDDED</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
+          <div class="project-icon big"><i class="fa-solid fa-train"></i></div>
+          <h3>Smart Rail Gate System</h3>
+          <p>Sensor-driven automated railway gate system built to improve crossing safety through automatic gate control.</p>
+          <div class="tech"><span>Arduino</span><span>Sensors</span><span>Embedded C</span></div>
+          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+        <article class="featured-project tilt-card reveal"><span class="gutter-num">04</span><div class="project-top"><span class="project-index">SYSTEM DESIGN</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
+          <div class="project-icon big"><i class="fa-solid fa-hospital"></i></div>
+          <h3>Hospital Management System</h3>
+          <p>Hospital information management system applying structured programming and data management concepts.</p>
+          <div class="tech"><span>C</span><span>Structured Programming</span><span>Data Management</span></div>
+          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
       </div>
-    </section>
 
-    <section class="section projects" id="projects">
-      <div class="container">
-        <div class="section-head reveal"><span class="section-num">03</span><div><p>SELECTED WORK</p><h2>Projects with a<br/><span>purpose.</span></h2></div></div>
-        <div class="featured-grid">
-          <article class="featured-project reveal">
-            <div class="project-top"><span class="project-index">01 / WEB</span><a href="https://github.com/SajidTusan" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-            <div class="project-icon big"><i class="fa-solid fa-magnifying-glass-location"></i></div>
-            <h3>Local Service Search Engine Management System</h3>
-            <p>Web-based local service search platform with MySQL database integration and CRUD operations.</p>
-            <div class="tech"><span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </article>
-          <article class="featured-project reveal">
-            <div class="project-top"><span class="project-index">02 / ML</span><a href="https://github.com/SajidTusan" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-            <div class="project-icon big"><i class="fa-solid fa-chart-line"></i></div>
-            <h3>Result Prediction Model</h3>
-            <p>Machine learning project for predicting students' academic results using preprocessing, training and evaluation workflows.</p>
-            <div class="tech"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span></div>
-            <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </article>
-          <article class="featured-project reveal">
-            <div class="project-top"><span class="project-index">03 / EMBEDDED</span><a href="https://github.com/SajidTusan" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-            <div class="project-icon big"><i class="fa-solid fa-train"></i></div>
-            <h3>Smart Rail Gate System</h3>
-            <p>Sensor-driven automated railway gate system designed to improve crossing safety through automatic gate control.</p>
-            <div class="tech"><span>Arduino</span><span>Sensors</span><span>Embedded C</span></div>
-            <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </article>
-          <article class="featured-project reveal">
-            <div class="project-top"><span class="project-index">04 / SYSTEM</span><a href="https://github.com/SajidTusan" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-            <div class="project-icon big"><i class="fa-solid fa-hospital"></i></div>
-            <h3>Hospital Management System</h3>
-            <p>Basic hospital information management system applying structured programming and data management concepts.</p>
-            <div class="tech"><span>C</span><span>Structured Programming</span><span>Data Management</span></div>
-            <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </article>
-        </div>
-
-        <div class="github-bar reveal">
-          <div><span class="live-dot"></span><strong>GitHub repository sync</strong><p>Public repositories from @SajidTusan are loaded automatically.</p></div>
-          <a href="https://github.com/SajidTusan?tab=repositories" target="_blank" class="btn secondary">Open GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </div>
-        <div class="repo-toolbar reveal"><span id="repoCount">Loading repositories...</span><select id="repoSort" aria-label="Sort repositories"><option value="updated">Recently updated</option><option value="stars">Most starred</option><option value="name">Name</option></select></div>
-        <div id="githubRepos" class="repo-grid"></div>
-        <p id="repoError" class="repo-error" hidden>GitHub repositories could not be loaded right now. You can still browse all projects directly on GitHub.</p>
+      <div class="github-bar reveal">
+        <div><span class="live-dot"></span><strong>GitHub repository sync</strong><p>Public repositories from @SajidTusan are loaded live via the GitHub API.</p></div>
+        <a href="https://github.com/SajidTusan?tab=repositories" target="_blank" rel="noopener" class="btn secondary">Open GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
-    </section>
+      <div class="repo-toolbar reveal"><span id="repoCount">Loading repositories...</span><select id="repoSort" aria-label="Sort repositories"><option value="updated">Recently updated</option><option value="stars">Most starred</option><option value="name">Name</option></select></div>
+      <div id="githubRepos" class="repo-grid"></div>
+      <p id="repoError" class="repo-error" hidden>GitHub repositories could not be loaded right now. You can still browse all projects directly on GitHub.</p>
+    </div>
+  </section>
 
-    <section class="section experience" id="experience">
-      <div class="container">
-        <div class="section-head reveal"><span class="section-num">04</span><div><p>JOURNEY</p><h2>Experience, learning<br/><span>& community.</span></h2></div></div>
-        <div class="timeline">
-          <article class="timeline-item reveal"><div class="time">SEP 2025<br/>DEC 2026</div><div class="time-dot"></div><div class="time-content"><span class="label">INTERNSHIP · REMOTE</span><h3>Lead Generation Intern</h3><h4>GAO TEK Inc.</h4><p>Conducted lead research, identified potential clients, maintained CRM records and supported sales pipeline activities.</p></div></article>
-          <article class="timeline-item reveal"><div class="time">MAR 2025<br/>JUL 2025</div><div class="time-dot"></div><div class="time-content"><span class="label">INTERNSHIP · REMOTE</span><h3>Business Development Intern</h3><h4>Youth School for Social Entrepreneurs</h4><p>Conducted market research, supported digital growth initiatives and collaborated on outreach and business development activities.</p></div></article>
-          <article class="timeline-item reveal"><div class="time">JUN 2024<br/>DEC 2024</div><div class="time-dot"></div><div class="time-content"><span class="label">DATA OPERATIONS</span><h3>Data Entry Operator</h3><h4>Intelligent Image Management Ltd.</h4><p>Processed and validated large datasets accurately, maintained digital records and prepared management reports.</p></div></article>
-          <article class="timeline-item reveal"><div class="time">JUN 2023<br/>PRESENT</div><div class="time-dot"></div><div class="time-content"><span class="label">COMMUNITY SERVICE</span><h3>Project Management & Community Support</h3><h4>Human Service Organization (HSO) · ARIC</h4><p>Supported community awareness and welfare programs, coordinated volunteers, helped organize events and monitored project outcomes.</p></div></article>
-        </div>
+  <section class="section experience" id="experience">
+    <div class="bg-blob blob-blue" style="top:10%;right:-10%;left:auto"></div>
+    <div class="container">
+      <div class="section-head reveal"><p class="path">sajid@dev:~/journey$ history</p><h2>Experience, learning<br/><span class="grad-text">& community.</span></h2></div>
+      <div class="timeline">
+        <article class="timeline-item reveal"><div class="time">SEP 2025<br/>DEC 2026</div><div class="time-dot"></div><div class="time-content tilt-card"><span class="label">INTERNSHIP · REMOTE</span><h3>Lead Generation Intern</h3><h4>GAO TEK Inc.</h4><p>Conducted lead research, identified potential clients, maintained CRM records and supported sales pipeline activities.</p></div></article>
+        <article class="timeline-item reveal"><div class="time">MAR 2025<br/>JUL 2025</div><div class="time-dot"></div><div class="time-content tilt-card"><span class="label">INTERNSHIP · REMOTE</span><h3>Business Development Intern</h3><h4>Youth School for Social Entrepreneurs</h4><p>Conducted market research, supported digital growth initiatives and collaborated on outreach and business development activities.</p></div></article>
+        <article class="timeline-item reveal"><div class="time">JUN 2024<br/>DEC 2024</div><div class="time-dot"></div><div class="time-content tilt-card"><span class="label">DATA OPERATIONS</span><h3>Data Entry Operator</h3><h4>Intelligent Image Management Ltd.</h4><p>Processed and validated large datasets accurately, maintained digital records and prepared management reports.</p></div></article>
+        <article class="timeline-item reveal"><div class="time">JUN 2023<br/>PRESENT</div><div class="time-dot"></div><div class="time-content tilt-card"><span class="label">COMMUNITY SERVICE</span><h3>Project Management & Community Support</h3><h4>Human Service Organization (HSO) · ARIC</h4><p>Supported community awareness and welfare programs, coordinated volunteers, helped organize events and monitored project outcomes.</p></div></article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section education" id="education">
-      <div class="container">
-        <div class="section-head reveal"><span class="section-num">05</span><div><p>EDUCATION</p><h2>The foundation<br/><span>behind the code.</span></h2></div></div>
-        <div class="edu-grid">
-          <div class="edu-card reveal"><span>2021 · PRESENT</span><h3>BSc in Computer Science & Engineering</h3><p>Northern University Bangladesh</p><strong>CGPA 3.47 / 4.00</strong><i class="fa-solid fa-graduation-cap"></i></div>
-          <div class="edu-card reveal"><span>2021</span><h3>Higher Secondary Certificate</h3><p>Science · Amanullah College</p><strong>GPA 4.67 / 5.00</strong><i class="fa-solid fa-book-open"></i></div>
-          <div class="edu-card reveal"><span>2019</span><h3>Secondary School Certificate</h3><p>Science · Bhandaria Vehari Secondary School</p><strong>GPA 4.94 / 5.00</strong><i class="fa-solid fa-school"></i></div>
-        </div>
-        <div class="certs reveal"><div><span>TRAINING</span><strong>Phitron · 2025–2026</strong><p>CS Fundamentals, Data Structures, Algorithms & Machine Learning Fundamentals</p></div><div><span>WORKSHOP</span><strong>Ostad · March 2025</strong><p>JavaScript Fundamentals / JavaScript Workshop for Absolute Beginners</p></div></div>
+  <section class="section education" id="education">
+    <div class="container">
+      <div class="section-head reveal"><p class="path">sajid@dev:~/education$ cat transcript.log</p><h2>The foundation<br/><span class="grad-text">behind the code.</span></h2></div>
+      <div class="edu-grid">
+        <div class="edu-card tilt-card reveal"><span>2021 · PRESENT</span><h3>BSc in Computer Science & Engineering</h3><p>Northern University Bangladesh</p><strong>CGPA 3.47 / 4.00</strong><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="edu-card tilt-card reveal"><span>2021</span><h3>Higher Secondary Certificate</h3><p>Science · Amanullah College</p><strong>GPA 4.67 / 5.00</strong><i class="fa-solid fa-book-open"></i></div>
+        <div class="edu-card tilt-card reveal"><span>2019</span><h3>Secondary School Certificate</h3><p>Science · Bhandaria Vehari Secondary School</p><strong>GPA 4.94 / 5.00</strong><i class="fa-solid fa-school"></i></div>
       </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="container contact-wrap reveal">
-        <div><span class="section-num">06</span><p class="contact-label">LET'S CONNECT</p><h2>Have an idea?<br/><span>Let's build it.</span></h2><p class="contact-copy">For opportunities, collaborations or project conversations, feel free to reach out.</p></div>
-        <div class="contact-card">
-          <a href="mailto:sajidhossain0103@gmail.com"><span>Email</span><strong>sajidhossain0103@gmail.com</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <a href="tel:+8801700512068"><span>Phone</span><strong>+880 1700 512068</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <a href="https://github.com/SajidTusan" target="_blank"><span>GitHub</span><strong>@SajidTusan</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <a href="https://www.linkedin.com/in/sajid-hossain-tusan/" target="_blank"><span>LinkedIn</span><strong>Sajid Hossain Tusan</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </div>
+      <div class="certs reveal">
+        <div class="tilt-card"><span>TRAINING</span><strong>Phitron · 2025–2026</strong><p>CS Fundamentals, Data Structures, Algorithms & Machine Learning Fundamentals</p></div>
+        <div class="tilt-card"><span>WORKSHOP</span><strong>Ostad · March 2025</strong><p>JavaScript Fundamentals / JavaScript Workshop for Absolute Beginners</p></div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer><div class="container"><span>© 2026 Sajid Hossain</span><span>Designed & coded with curiosity.</span><a href="#home">Back to top ↑</a></div></footer>
-  <button class="back-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
-  <script src="script.js"></script>
+  <section class="section contact" id="contact">
+    <canvas id="contactCanvas" class="contact-canvas"></canvas>
+    <div class="container contact-wrap reveal">
+      <div><p class="path">sajid@dev:~/contact$ ./reach_out.sh</p><h2>Have an idea?<br/><span class="grad-text">Let's build it.</span></h2><p class="contact-copy">For opportunities, collaborations or project conversations, feel free to reach out.</p></div>
+      <div class="contact-card tilt-card">
+        <a href="mailto:sajidhossain0103@gmail.com"><span>Email</span><strong>sajidhossain0103@gmail.com</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <a href="tel:+8801700512068"><span>Phone</span><strong>+880 1700 512068</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><span>GitHub</span><strong>@SajidTusan</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <a href="https://www.linkedin.com/in/sajid-hossain-tusan/" target="_blank" rel="noopener"><span>LinkedIn</span><strong>Sajid Hossain Tusan</strong><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container"><span>© 2026 Sajid Hossain</span><span>Designed & engineered with curiosity.</span><a href="#home">Back to top ↑</a></div></footer>
+<button class="back-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
