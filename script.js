@@ -288,48 +288,59 @@ const repoContainer = $('#githubRepos');
 const repoCount = $('#repoCount');
 const repoError = $('#repoError');
 const repoSort = $('#repoSort');
+const repoFilter = $('#repoFilter');
 let repositories = [];
 
 function escapeHTML(value = '') {
   return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
 }
-function repoCard(repo) {
+function repoCard(repo, index) {
   const desc = repo.description || 'No description added yet. Open the repository to explore the code.';
   const lang = repo.language || 'Code';
   const stars = repo.stargazers_count || 0;
-  const forks = repo.forks_count || 0;
-  return `<article class="repo-card tilt-card">
+  const updated = repo.updated_at ? new Date(repo.updated_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : 'Recently updated';
+  const forkLabel = repo.fork ? '<span class="repo-badge">FORK</span>' : '';
+  const archivedLabel = repo.archived ? '<span class="repo-badge archived">ARCHIVED</span>' : '';
+  return `<article class="repo-card tilt-card" style="--card-index:${index}">
     <div class="repo-head">
-      <a class="repo-name" href="${repo.html_url}" target="_blank" rel="noopener"><i class="fa-regular fa-folder-open"></i>${escapeHTML(repo.name)}</a>
-      <span class="repo-stars">★ ${stars}</span>
+      <a class="repo-name" href="${escapeHTML(repo.html_url)}" target="_blank" rel="noopener"><i class="fa-regular fa-folder-open"></i><span>${escapeHTML(repo.name)}</span></a>
+      <span class="repo-stars" aria-label="${stars} stars"><i class="fa-regular fa-star"></i> ${stars}</span>
     </div>
+    <div class="repo-meta"><span class="repo-language"><i class="lang-dot"></i>${escapeHTML(lang)}</span>${forkLabel}${archivedLabel}</div>
     <p class="repo-desc">${escapeHTML(desc)}</p>
     <div class="repo-footer">
-      <span class="lang"><i class="lang-dot"></i>${escapeHTML(lang)}</span>
-      <span>${forks} fork${forks === 1 ? '' : 's'} · ${new Date(repo.updated_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}</span>
+      <span>Updated ${updated}</span>
+      <a class="repo-open" href="${escapeHTML(repo.html_url)}" target="_blank" rel="noopener" aria-label="Open ${escapeHTML(repo.name)} on GitHub">View project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
     </div>
   </article>`;
 }
 function renderRepos() {
   const mode = repoSort.value;
-  const sorted = [...repositories].sort((a, b) => {
+  const filter = repoFilter.value;
+  const filtered = repositories.filter(repo => filter === 'all' || (filter === 'fork' ? repo.fork : !repo.fork));
+  const sorted = filtered.sort((a, b) => {
     if (mode === 'stars') return (b.stargazers_count || 0) - (a.stargazers_count || 0);
     if (mode === 'name') return a.name.localeCompare(b.name);
     return new Date(b.updated_at) - new Date(a.updated_at);
   });
-  repoContainer.innerHTML = sorted.map(repoCard).join('');
-  repoCount.textContent = `${sorted.length} public repositories`;
+  repoContainer.innerHTML = sorted.length
+    ? sorted.map(repoCard).join('')
+    : '<p class="repo-empty">No repositories in this view yet.</p>';
+  repoCount.textContent = filter === 'all'
+    ? `${sorted.length} public ${sorted.length === 1 ? 'repository' : 'repositories'}`
+    : `${sorted.length} of ${repositories.length} public repositories`;
   if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     $$('.repo-card').forEach(el => initTilt(el, 4));
   }
 }
 repoSort.addEventListener('change', renderRepos);
+repoFilter.addEventListener('change', renderRepos);
 
 async function loadGitHubRepos() {
   try {
     const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
     if (!response.ok) throw new Error(`GitHub API ${response.status}`);
-    repositories = (await response.json()).filter(r => !r.fork);
+    repositories = (await response.json()).filter(repo => !repo.private);
     renderRepos();
   } catch (error) {
     console.warn('GitHub sync failed:', error);

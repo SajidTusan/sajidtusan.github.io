@@ -131,43 +131,12 @@
 
   <section class="section projects" id="projects">
     <div class="container">
-      <div class="section-head reveal"><p class="path">sajid@dev:~/work$ git log --oneline</p><h2>Projects with a<br/><span class="grad-text">purpose.</span></h2></div>
-      <div class="featured-grid">
-        <article class="featured-project tilt-card reveal"><span class="gutter-num">01</span><div class="project-top"><span class="project-index">WEB · CRUD</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
-          <div class="project-icon big"><i class="fa-solid fa-magnifying-glass-location"></i></div>
-          <h3>Local Service Search Engine Management System</h3>
-          <p>Web-based local service search platform with MySQL database integration and full CRUD operations.</p>
-          <div class="tech"><span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </article>
-        <article class="featured-project tilt-card reveal"><span class="gutter-num">02</span><div class="project-top"><span class="project-index">MACHINE LEARNING</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
-          <div class="project-icon big"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>Result Prediction Model</h3>
-          <p>ML project predicting students' academic results, covering preprocessing, training and evaluation workflows.</p>
-          <div class="tech"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span></div>
-          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </article>
-        <article class="featured-project tilt-card reveal"><span class="gutter-num">03</span><div class="project-top"><span class="project-index">EMBEDDED</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
-          <div class="project-icon big"><i class="fa-solid fa-train"></i></div>
-          <h3>Smart Rail Gate System</h3>
-          <p>Sensor-driven automated railway gate system built to improve crossing safety through automatic gate control.</p>
-          <div class="tech"><span>Arduino</span><span>Sensors</span><span>Embedded C</span></div>
-          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </article>
-        <article class="featured-project tilt-card reveal"><span class="gutter-num">04</span><div class="project-top"><span class="project-index">SYSTEM DESIGN</span><a href="https://github.com/SajidTusan" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a></div>
-          <div class="project-icon big"><i class="fa-solid fa-hospital"></i></div>
-          <h3>Hospital Management System</h3>
-          <p>Hospital information management system applying structured programming and data management concepts.</p>
-          <div class="tech"><span>C</span><span>Structured Programming</span><span>Data Management</span></div>
-          <a class="project-arrow" href="https://github.com/SajidTusan" target="_blank" rel="noopener">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </article>
-      </div>
-
+      <div class="section-head reveal"><p class="path">sajid@dev:~/work$ gh repo list SajidTusan</p><h2>Every build,<br/><span class="grad-text">in one place.</span></h2><p class="section-intro">A live collection of my public GitHub repositories. Open any project to explore the code, tools and ideas behind it.</p></div>
       <div class="github-bar reveal">
-        <div><span class="live-dot"></span><strong>GitHub repository sync</strong><p>Public repositories from @SajidTusan are loaded live via the GitHub API.</p></div>
+        <div><span class="live-dot"></span><strong>Live from GitHub</strong><p>Project cards stay in sync with the public repositories on @SajidTusan.</p></div>
         <a href="https://github.com/SajidTusan?tab=repositories" target="_blank" rel="noopener" class="btn secondary">Open GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
-      <div class="repo-toolbar reveal"><span id="repoCount">Loading repositories...</span><select id="repoSort" aria-label="Sort repositories"><option value="updated">Recently updated</option><option value="stars">Most starred</option><option value="name">Name</option></select></div>
+      <div class="repo-toolbar reveal"><span id="repoCount" aria-live="polite">Loading repositories...</span><div class="repo-controls"><label class="sr-only" for="repoFilter">Filter repositories</label><select id="repoFilter"><option value="all">All projects</option><option value="original">My projects</option><option value="fork">Forks</option></select><label class="sr-only" for="repoSort">Sort repositories</label><select id="repoSort"><option value="updated">Recently updated</option><option value="stars">Most starred</option><option value="name">Name</option></select></div></div>
       <div id="githubRepos" class="repo-grid"></div>
       <p id="repoError" class="repo-error" hidden>GitHub repositories could not be loaded right now. You can still browse all projects directly on GitHub.</p>
     </div>

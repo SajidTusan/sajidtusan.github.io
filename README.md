@@ -4,8 +4,9 @@ A modern, responsive personal portfolio for Sajid Hossain.
 
 ## Included
 - CV-aligned profile, skills, education and experience
-- Selected projects based on the latest CV
-- Automatic public GitHub repository sync for `@SajidTusan`
+- Live cards for every public repository on `@SajidTusan`, including forks and archived repositories
+- Project filtering and sorting by update date, stars, or name
+- Interactive 3D project cards with pointer tilt and spotlight effects
 - Dark/light theme
 - Responsive mobile navigation
 - Scroll reveal animations
